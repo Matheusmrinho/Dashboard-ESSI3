@@ -41,6 +41,16 @@ if os.path.exists(data_dir):
         data = data.applymap(lambda x: x.strip() if isinstance(x, str) else x)
 
         # ==============================
+        # FILTRO POR PRIORIDADE
+        # ==============================
+        st.sidebar.subheader("Filtro de Prioridade")
+        prioridades = sorted(data["Prioridade"].dropna().unique().tolist())
+        prioria_filtro = st.sidebar.multiselect("Selecione prioridades", prioridades, default=prioridades)
+
+        if len(prioria_filtro) > 0:
+            data = data[data["Prioridade"].isin(prioria_filtro)]
+
+        # ==============================
         # MÉTRICAS DERIVADAS
         # ==============================
         data["Qtd Passos"] = data["Passos"].apply(lambda x: len(str(x).split("\n")) if pd.notna(x) else 0)
@@ -52,13 +62,26 @@ if os.path.exists(data_dir):
         data["Tamanho Resultado"] = data["Resultado Esperado"].apply(lambda x: len(str(x)) if pd.notna(x) else 0)
 
         # ==============================
+        # STATUS DOS TESTES
+        # ==============================
+        st.subheader("📊 Status dos Testes")
+
+        total_testes = len(data)
+        passaram = data["Resultado Execução"].str.contains("PASSED|OK|SUCESS", case=False, na=False).sum()
+        falharam = data["Resultado Execução"].str.contains("FAILED|ERRO|FAILED", case=False, na=False).sum()
+        nao_exec = data["Resultado Execução"].str.contains("NÃO EXECUTADO|NAO EXECUTADO", case=False, na=False).sum()
+
+
+        # ==============================
         # MÉTRICAS GERAIS
         # ==============================
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3, col4,col5,col6 = st.columns(6)
         col1.metric("Total de Testes", len(data))
-        col2.metric("Com Pré-condição", data["Tem Pré-condição"].sum())
-        col3.metric("Com Bug Reportado", data["Tem Bug"].sum())
-        col4.metric("Sem Resultado Esperado", len(data) - data["Tem Resultado Esperado"].sum())
+        col2.metric("Passaram", passaram)
+        col3.metric("Com Pré-condição", data["Tem Pré-condição"].sum())
+        col4.metric("Falharam", falharam)
+        col5.metric("Com Bug Reportado", data["Tem Bug"].sum())
+        col6.metric("Sem Resultado Esperado", len(data) - data["Tem Resultado Esperado"].sum())
 
         # ==============================
         # DISTRIBUIÇÕES E GRÁFICOS
@@ -66,10 +89,10 @@ if os.path.exists(data_dir):
         st.subheader("📈 Estrutura e Complexidade dos Testes")
 
         fig1 = px.histogram(data, x="Qtd Passos", nbins=20, title="Distribuição da Quantidade de Passos")
-        st.plotly_chart(fig1, use_container_width=True)
+        st.plotly_chart(fig1, width="stretch")
 
         fig2 = px.box(data, y="Tamanho Steps", color="Prioridade", title="Comprimento dos Steps por Prioridade")
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
         # ==============================
         # TESTES EXTREMOS
@@ -97,7 +120,7 @@ if os.path.exists(data_dir):
         bugs_por_prioridade["Tem Bug"] = bugs_por_prioridade["Tem Bug"] * 100
         fig3 = px.bar(bugs_por_prioridade, x="Prioridade", y="Tem Bug",
                       title="Percentual de Testes com Bug por Prioridade", text_auto=".1f")
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(fig3, width="stretch")
 
         # ==============================
         # SIMILARIDADE ENTRE TESTES
@@ -105,12 +128,13 @@ if os.path.exists(data_dir):
         st.subheader("🔍 Testes com Steps Muito Parecidos")
 
         stopwords_pt = [
-            "de", "a", "o", "e", "que", "do", "da", "em", "para", "com", "não", "uma",
-            "os", "no", "se", "na", "por", "as", "dos", "como", "mas", "foi", "ao",
-            "ele", "das", "tem", "à", "seu", "sua", "ou", "ser", "quando", "muito", 
-            "nos", "já", "está", "eu", "também", "só", "pelo", "pela", "até", "isso",
-            "ela", "entre", "sem", "mesmo", "me", "esse", "eles", "você", "meu", "minha"
+            "de","a","o","e","que","do","da","em","para","com","não","uma","os","no","se",
+            "na","por","as","dos","como","mas","foi","ao","ele","das","tem","à","seu","sua",
+            "ou","ser","quando","muito","nos","já","está","eu","também","só","pelo","pela",
+            "até","isso","ela","entre","sem","mesmo","me","esse","eles","você","meu","minha"
         ]
+
+        data = data.reset_index(drop=True)  # <- prevenção KeyError
 
         tfidf = TfidfVectorizer(stop_words=stopwords_pt)
         tfidf_matrix = tfidf.fit_transform(data["Passos"].fillna(""))
@@ -124,7 +148,7 @@ if os.path.exists(data_dir):
 
         if similares:
             sim_df = pd.DataFrame(similares, columns=["Teste A", "Teste B", "Similaridade"])
-            st.dataframe(sim_df, use_container_width=True, height=300)
+            st.dataframe(sim_df, height=300)
         else:
             st.info("Nenhum par de testes com alta similaridade (limiar > 0.7).")
 
@@ -139,7 +163,7 @@ if os.path.exists(data_dir):
             rep = data[data["Resultado Esperado"].isin(duplicados)][
                 ["TC ID", "Título do Teste", "Resultado Esperado", "Prioridade"]
             ]
-            st.dataframe(rep, use_container_width=True, height=300)
+            st.dataframe(rep, height=300)
         else:
             st.info("Nenhum resultado esperado repetido encontrado.")
 
