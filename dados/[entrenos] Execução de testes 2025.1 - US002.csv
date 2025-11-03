@@ -1,0 +1,67 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-9,TC001,[Splash] Verificar tempo de exibição. ,App instalado.,1. Iniciar o aplicativo.,"A tela de Splash deve ser exibida por exatamente 
+2 segundos.",NÃO EXECUTADO,,ALTA
+MUN-9,TC002,[Primeiro Acesso] Navegação Splash → Onboarding.,"Primeiro acesso 
+(dados limpos).",1. Iniciar o aplicativo.,"Após a Splash sumir, deve ser direcionado 
+para a Onboarding 1 (Boas-vindas).",NÃO EXECUTADO,BUG (link Jira),ALTA
+MUN-9,TC003,"[Navegação Progressiva] 
+Avançar usando o botão ""Próximo"".","O usuário está na 
+Onboarding 1.","1. Tocar no botão ""Próximo"" em todas as
+ telas (1 a 4).","O usuário deve navegar sequencialmente da 
+Onboarding 1 até a Onboarding 5.",NÃO EXECUTADO,BUG (link Jira),ALTA
+MUN-9,TC004,"[Navegação Regressiva] 
+Voltar usando o ícone.","O usuário está na 
+Onboarding 5.","1. Tocar no ícone de seta/voltar (←)
+ no canto superior.","O usuário deve retornar sequencialmente da  
+Onboarding 5 até a Onboarding 1.",NÃO EXECUTADO,,Média
+MUN-9,TC005,"[Início do Onboarding] Botão
+ Voltar na primeira tela.","O usuário está na 
+Onboarding 1.",1. Tocar no ícone de seta/voltar (←).,"O botão/ícone de Voltar não deve existir ou deve 
+estar desabilitado na primeira tela, ou deve fechar
+ o app/direcionar para Login se for a regra. 
+(Verificar regra de negócio para a primeira tela).",NÃO EXECUTADO,,Média
+MUN-9,TC006,"[Conclusão] Botão ""Começar"" na 
+Onboarding 5.","O usuário está na 
+Onboarding 5.","1. Tocar no botão ""Começar"".","O usuário deve ser direcionado imediatamente 
+para a tela de Login/Cadastro.",NÃO EXECUTADO,,ALTA
+MUN-9,TC007,"[Navegação Pular/Sair] Navegação 
+por toque lateral (swipe).","O usuário está na 
+Onboarding 1.","1. Deslizar a tela para a esquerda (swipe) 
+sequencialmente.","O usuário deve navegar para a próxima tela do 
+Onboarding (1 → 2 → 3 → 4 → 5).",NÃO EXECUTADO,,Média
+MUN-9,TC008,"[Acesso Subsequente - Deslogado] 
+Não exibir Onboarding novamente.","Acesso subsequente 
+ao app. Usuário não 
+está logado.",1. Fechar o app. 2. Iniciar o aplicativo.,"Após a Splash, o app deve ser direcionado 
+diretamente para a tela de Login/Cadastro.",NÃO EXECUTADO,,ALTA
+MUN-9,TC009,"[Acesso Subsequente - Logado] 
+Direcionamento para Home.","Acesso subsequente. 
+Usuário está logado.",1. Fechar o app. 2. Iniciar o aplicativo.,"Após a Splash, o app deve ser direcionado 
+diretamente para a tela Home.",NÃO EXECUTADO,,ALTA
+MUN-9,TC010,"[Visual/Textual] Validação do 
+Conteúdo (Texto/Design).","O usuário está no 
+Onboarding.","1. Verificar os textos e imagens em cada 
+uma das 5 telas do Onboarding.","Os textos e imagens devem estar idênticos ao 
+protótipo e ao documento de spec (especificação).",NÃO EXECUTADO,,Média
+MUN-9,TC0011,"[Robustez] Interromper o 
+Onboarding e retornar.","O usuário está na
+ Onboarding 3.","1. Minimizar/Colocar o app em segundo plano. 
+2. Restaurar o aplicativo.","O usuário deve retornar para a Onboarding 3 
+(a tela onde parou), e o fluxo deve continuar 
+normalmente.",NÃO EXECUTADO,,Média
+MUN-9,TC0012,"[Responsividade] Alterar a orientação
+ da tela.","O usuário está na 
+Onboarding 2.","1. Gire o dispositivo/simulador para a orientação
+ Horizontal (Paisagem). 
+2. Gire de volta para a orientação Vertical (Retrato).","O conteúdo da tela (texto, imagens e botões) 
+deve se ajustar corretamente e ser totalmente 
+legível em ambas as orientações.",NÃO EXECUTADO,,Média
+,,,,,,,,
+MUN-9,TC0013,"[Usabilidade] Swipe na última 
+e primeira tela.","O usuário está na 
+Onboarding 5.","1. Tentar deslizar para a direita (swipe right). 
+2. Ir para a Onboarding 1. 
+3. Tentar deslizar para a esquerda (swipe left).","O swipe não deve funcionar (ou o carrossel não 
+deve ir além) na Onboarding 5 (para a frente)
+ e na Onboarding 1 (para trás).",NÃO EXECUTADO,,Média

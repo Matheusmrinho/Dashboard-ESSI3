@@ -1,0 +1,35 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-6,TC001,Realizar login com com  formatação de email e senha corretas (caso feliz) ,Usuário precisa estar cadastrado,"1. Acessar a tela de login.
+2. Inserir e-mail válido e senha correta.
+3. Clicar em Fazer Login.",O sistema deve autenticar o usuário e redirecionar para a tela inicial/home.,NÃO EXECUTADO,,ALTA
+MUN-6,TC002,Realizar login com a senha incorreta registrada no sistema ,Usuário precisa estar cadastrado ,"1. Acessar a tela de Login
+2. Inserir e-mail válido e senha incorreta
+3. Clicar em “Fazer Login”",Deve ser exibido ao usuário que a senha está incorreta e que deve tentar novamente,NÃO EXECUTADO,BUG (link Jira),
+MUN-6,TC003,Usuario não possue cadastro e tenta fazer login ,Usuário não cadastrado no sistema,"1. Acessar a tela de Login
+2. Inserir e-mail não cadastrado e senha qualquer
+3. Clicar em “Fazer Login”","O usuário deve ver a mensagem de de empty state: ""Preencha o campo matrícula"". ",NÃO EXECUTADO,BUG (link Jira),
+MUN-6,TC004,"Realizar login com caracteres inválidos (acentos, símbolos, espaços)",,"1. Acessar a tela de Login
+2. Digitar caracteres inválidos no campo de e-mail (ex: @@@ ou joão@@mail..com)
+3. Clicar em “Fazer Login”",O usuario deve receber a mensagem de realizar o login com os dados corretos ,NÃO EXECUTADO,,
+MUN-6,TC005,Realizar login e interferir no meio da requisicao,Usuário precisa estar cadastrado,"1. Tela inicial -> Tela de login  2. logar (user:admin123, senha: 123123)",O login não deve ser feito e não deve ficar registrado o usuario no app,NÃO EXECUTADO,,
+,TC006,Tentar login sem preencher campos,,"1. Acessar a tela de Login
+2. Deixar ambos os campos vazios
+3. Clicar em “Fazer Login”",O sistema deve exibir mensagem informando que os campos são obrigatórios,NÃO EXECUTADO,,
+MUN-6,TC007,Realizar login usando codigos SQL no campo de email,Usuário precisa estar cadastrado,1. Tela inicial -> Tela de login  2. logar com sql injector.,"O sistema não deve executar o comando e deve tratar a entrada como texto, resultando em falha de login.",NÃO EXECUTADO,,
+MUN-6,TC008,Usuário clica no botão realizar login e é redirecionado para outra tela,Usuário precisa preencher todos os campos,1. Tela inicial -> Tela de login  2. logar,O usuário recebe a mensagem de login realizado com sucesso e é redirecionado para a tela de home,NÃO EXECUTADO,,
+MUN-6,TC009,Realizar login usando codigos SQL no campo de senha,,1. Tela inicial -> Tela de login  2. logar usando SQL injector no campo de senha,"O sistema não deve executar o comando e deve tratar a entrada como texto, resultando em falha de login.",NÃO EXECUTADO,,
+MUN-6,TC010,Usuário tenta fazer várias tentativas de login incessantemente ,,1. Tela inicial -> Tela de login -> Colocar a senha mais de 5 vezes,,NÃO EXECUTADO,,
+MUN-6,TC0011,Login com usuário que alterou a senha recentemente,Usuário precisa mudar a senha recentemente,"1. Tentar logar com e-mail válido e a senha antiga. 2. Clicar em ""Fazer Login"".","O sistema deve exibir uma mensagem de erro de ""E-mail ou senha inválidos"".",NÃO EXECUTADO,,
+MUN-6,TC0012,Tentar fazer login em uma conta bloqueada administrativamente ,A conta precisa ser bloqueada por administrador,1. Tela inicial -> Tela de login  2. tentar logar com uma conta administrativamente bloqueada,Deve exigir uma mensagem ao usuário informando que um erro aconteceu ao logar nessa conta e que ele deve procurar o suporte ,NÃO EXECUTADO,,
+MUN-6,TC0013,Realizar login sem informar senha,Usuário não pode estar cadastrado,"1. Tela inicial -> Tela de login  2. logar (user:admin123, senha: )",Deve exibir uma mensagem informando que é preciso preencher o campo de senha para realizar o login,NÃO EXECUTADO,,
+MUN-6,TC0014,Clicar em realizar login e ser redirecionado para uma tela diferente que não a de Home,,1. Tela inicial -> 2. Realizar Login -> 3.Clicar no botão para ser direcionado pra outra tela ,Ao clicar em login deve ser levado a tela de Home ,NÃO EXECUTADO,,
+MUN-6,TC0016,Redimensionamento da janela nos dispositivos,,Redimensionar usando a funcao popup,"A interface deve se adaptar responsivamente, sem quebra de layout ou elementos cortados.",NÃO EXECUTADO,,
+MUN-6,TC0017,Persistência de sessão ,Usuário precisa estar cadastrado,"1. Fazer login válido
+2. Fechar o navegador e abrir novamente
+3. Acessar o sistema novamente",O sistema deve manter a sessão ativa (caso cookies/sessão estejam configurados) ou solicitar novo login se expirada,NÃO EXECUTADO,,
+MUN-6,TC0018,Orientação da Tela (Retrato),O dispositivo está em modo paisagem.,1. Tela inicial -> tela de login,"A tela de login deve ser exibida corretamente no modo retrato, com todos os elementos bem posicionados.",NÃO EXECUTADO,,
+MUN-6,TC0019,Tentar logar com campo em branco do e-mail ,Usuário precisa estar cadastrado,1. Tela Inicial -> 2. Tela de login -> apertar em entrar com campo de email vazio,"Deve apresentar ao usuário ""insira um e-mail válido""",NÃO EXECUTADO,,
+MUN-6,TC0021,"Usuário clica no  botão ""esqueceu a senha?"" e é redirecionado para a tela de recuperação de senha",Usuário cadastrado,"1. Inserir e-mail de um usuário e senha de outro
+2. Clicar em “Fazer Login”",O sistema deve exibir mensagem de erro informando credenciais incorretas,NÃO EXECUTADO,,
+MUN-6,TC0022,Orientação da Tela (Paisagem),O dispositivo está em modo retrato.,1.Tela inicial --> 2. Tela de login ,1. Girar o dispositivo para o modo paisagem.,NÃO EXECUTADO,,

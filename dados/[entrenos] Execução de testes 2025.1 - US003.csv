@@ -1,0 +1,114 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-5,TC001,"[Caminho Feliz] Cadastro com
+ dados VÁLIDOS e ÚNICOS.",Usuário na tela de Cadastro.,"1. Preencher Nome, E-mail (único) e 
+Senha (válida). 2. Clicar em ""Cadastrar"".","A conta deve ser criada e o usuário 
+redirecionado para a Home, já logado.",NÃO EXECUTADO,,ALTA
+MUN-5,TC002,"[Validação] E-mail Duplicado: 
+Mensagem de erro correta (RF-003).","E-mail de teste já
+ existe no banco.","1. Preencher formulário usando o e-mail já existente.
+ 2. Clicar em ""Cadastrar"".","O sistema deve impedir o cadastro e exibir a
+ mensagem de erro: ""Este e-mail já está cadastrado"".",NÃO EXECUTADO,BUG (link Jira),ALTA
+MUN-5,TC003,"[Validação] Formato de E-mail 
+INVÁLIDO ao perder o foco (RF-002).","Usuário na tela de 
+Cadastro.","1. Inserir e-mail em formato inválido (ex: teste@teste). 
+2. Tocar fora do campo (perder o foco).","Uma mensagem de erro deve ser exibida abaixo 
+do campo: ""Formato de e-mail inválido"".",NÃO EXECUTADO,BUG (link Jira),ALTA
+MUN-5,TC004,"[UX] Alternar Visibilidade da Senha 
+(Ícone ""olho"") (RNF-004).","Usuário digitando no 
+campo Senha.","1. Digitar uma senha. 
+2. Tocar no ícone de ""olho"" para revelar. 
+3. Tocar novamente para ocultar.","A visibilidade da senha deve ser alternada 
+corretamente (texto visível ↔ bolinhas/asteriscos).",NÃO EXECUTADO,,ALTA
+MUN-5,TC005,"[Segurança] Comunicação Segura: 
+Requisição via HTTPS (RNF-001).",Iniciar o cadastro.,"1. Abrir a ferramenta de debugging de rede. 
+2. Submeter o formulário com dados válidos.","A requisição de cadastro (POST /register) deve 
+ser enviada utilizando HTTPS/SSL.",NÃO EXECUTADO,,ALTA
+MUN-5,TC006,"[Validação] Campos Obrigatórios 
+Vazios: Bloqueio do cadastro.","Usuário na tela de 
+Cadastro.","1. Deixar os campos Nome, E-mail e Senha 
+vazios. 2. Clicar em ""Cadastrar"".","O sistema deve bloquear a submissão e exibir 
+mensagens de erro para todos os campos vazios.",NÃO EXECUTADO,,ALTA
+MUN-5,TC007,"[Validação] Senha Mínima:
+ Verificar limite de caracteres.","Usuário na tela de 
+Cadastro.","1. Inserir Nome e E-mail válidos. 
+2. Inserir uma senha abaixo do limite mínimo.","O sistema deve exibir uma mensagem de 
+erro abaixo do campo Senha 
+(Ex: ""A senha deve ter no mínimo 6 caracteres"").",NÃO EXECUTADO,,Média
+MUN-5,TC008,"[UX] Posicionamento e Clareza das 
+Mensagens de Erro (RNF-003).","Campos do formulário 
+estão em estado de erro.","1. Forçar um erro em cada campo individualmente. 
+2. Forçar erros em todos os campos.","Todas as mensagens de erro devem estar claras 
+e posicionadas diretamente abaixo do campo 
+correspondente.",NÃO EXECUTADO,,Média
+MUN-5,TC009,"[UX] Comportamento do Botão 
+durante o Carregamento (RNF-005).","Usuário preencheu
+ os dados.","1. Clicar em ""Cadastrar"".
+ 2. Observar o botão durante a requisição.","O botão ""Cadastrar"" deve ser desabilitado e/ou
+ exibir um indicador de carregamento (spinner)
+ para evitar cliques duplos.",NÃO EXECUTADO,,Média
+MUN-5,TC010,"[Desempenho] Tempo de Resposta 
+da Requisição (RNF-005).","Submissão com 
+dados válidos.","1. Medir o tempo entre o clique em ""Cadastrar"" 
+e o redirecionamento.","O tempo total de requisição e transição não deve 
+exceder 3 segundos.",NÃO EXECUTADO,,Média
+MUN-5,TC0011,"[Validação] E-mail Válido no Limite 
+Inferior (Ex: a@b.co).","Usuário na tela de 
+Cadastro.","1. Inserir um e-mail com o mínimo de caracteres 
+para ser válido (Ex: a@b.co). 2. Perder o foco.","Nenhuma mensagem de erro deve ser exibida e
+ o campo deve ser considerado válido.",NÃO EXECUTADO,,Média
+MUN-5,TC0012,"[Validação] E-mail com Limite Máximo
+ de Caracteres.","Usuário na tela de
+Cadastro.","1. Inserir um e-mail com o número máximo de 
+caracteres permitido pelo backend.","O campo deve aceitar e o cadastro deve ser 
+finalizado com sucesso (TC001).",NÃO EXECUTADO,,Média
+MUN-5,TC0013,"[Validação] Senha com Caracteres 
+Especiais.","Usuário na tela de 
+Cadastro.","1. Inserir uma senha que contenha caracteres
+ especiais (ex: Senha!@#123). 
+2. Submeter o cadastro.","O cadastro deve ser finalizado com sucesso
+ (TC001).",NÃO EXECUTADO,,Média
+MUN-5,TC0014,"[Validação] Campo Nome Vazio
+, E-mail e Senha Válidos.","Usuário na tela de 
+Cadastro.","1. Deixar o campo Nome vazio. 
+2. Preencher E-mail e Senha válidos. 
+3. Clicar em ""Cadastrar"".","O sistema deve exibir mensagem de erro apenas
+ no campo Nome (Campo obrigatório).",NÃO EXECUTADO,,Média
+MUN-5,TC0015,"[Visual] Ajuste do Teclado
+ (Scroll da Tela).","O campo de senha 
+está na parte inferior
+ da tela.","1. Tocar no campo Senha para abrir o teclado
+ virtual.","A tela deve rolar automaticamente para garantir 
+que o campo Senha e o botão ""Cadastrar"" fiquem 
+visíveis acima do teclado.",NÃO EXECUTADO,,Média
+MUN-5,TC0016,"[Acessibilidade] Navegação por 
+Teclado/Focus (Web/Desktop).","Usuário na tela de 
+Cadastro 
+(Aplicável se for Web/Desktop).","1. Usar a tecla TAB para navegar entre Nome,
+ E-mail, Senha e Botão.","A ordem de foco deve ser lógica e sequencial
+ (Nome → E-mail → Senha → Cadastrar).",NÃO EXECUTADO,,Baixa
+MUN-5,TC0017,"[Robustez] Cadastro com perdas 
+de Conexão Temporárias.","Conexão de internet 
+instável (simulação).",1. Iniciar a requisição. 2. Interromper a conexão por 2 segundos. 3. Restaurar a conexão.,"O sistema deve exibir uma mensagem de erro 
+clara sobre a falha na conexão ou tentar a requisição 
+novamente (se houver lógica de retry).",NÃO EXECUTADO,,Média
+MUN-5,TC0018,"[Visual] Confirmação Visual da Senha
+ Revelada.","Usuário revelou a 
+senha (TC004).","1. Observar o ícone de ""olho"" após a
+ senha ser revelada.","O ícone deve mudar visualmente
+ (ex: de um olho fechado para um olho aberto) 
+para indicar seu estado atual.",NÃO EXECUTADO,,Média
+MUN-5,TC0019,"[Validação] Case Sensitivity 
+(Diferenciação de Maiúsculas/Minúsculas).","Usuário na tela de 
+Cadastro.","1. Cadastrar um e-mail com letras maiúsculas (Ex: Teste@email.com).
+ 2. Tentar cadastrar teste@email.com (apenas minúsculas).","O sistema não deve permitir o segundo cadastro, 
+pois e-mails são geralmente tratados como não 
+case-sensitive (o email é o mesmo) ou deve seguir 
+a regra definida pela API.",NÃO EXECUTADO,,Média
+MUN-5,TC0020,"[Validação] Nome com Caracteres 
+Especiais ou Números.","Usuário na tela de
+ Cadastro.","1. Inserir no campo Nome: João 123 ou
+ Maria!@#. 
+2. Submeter o cadastro.","O sistema deve aceitar se a regra for permitir ou 
+exibir uma mensagem de erro clara se a regra for 
+apenas letras para o campo Nome.",NÃO EXECUTADO,,Média

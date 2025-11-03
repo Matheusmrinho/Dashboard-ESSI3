@@ -1,0 +1,50 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-12,TC001,Tentar cadastrar loja com campo obrigatório em branco,Usuário autenticado,"1. Deixar um ou mais campos obrigatórios vazios
+2. Clicar em Salvar",O sistema deve exibir mensagem “[Campo] obrigatório” em vermelho abaixo do input correspondente,NÃO EXECUTADO,,ALTA
+MUN-12,TC002,Inserir CNPJ inválido,Usuário autenticado,"1. Inserir CNPJ com formato incorreto (ex: “1234567890001”)
+2. Clicar em Salvar",O sistema deve exibir mensagem “CNPJ incorreto” em vermelho,NÃO EXECUTADO,BUG (link Jira),ALTA
+MUN-12,TC003,Inserir e-mail comercial inválido,Usuário autenticado,"1. Digitar um e-mail com formato incorreto (ex: “loja@com”)
+2. Clicar em Salvar",O sistema deve exibir mensagem “E-mail incorreto” abaixo do campo,NÃO EXECUTADO,BUG (link Jira),ALTA
+MUN-12,TC004,Inserir telefone com formato incorreto,Usuário autenticado,"1. Digitar telefone fora do padrão (ex: “1234”)
+2. Clicar em Salvar",O sistema deve exibir mensagem “Telefone incorreto” em vermelho,NÃO EXECUTADO,,ALTA
+MUN-12,TC005,Verificar envio correto à API,Usuário autenticado,"1. Preencher corretamente todos os campos
+2. Clicar em Salvar
+3. Monitorar requisição de rede (POST /lojas)",O sistema deve realizar POST para o endpoint correto com os dados preenchidos,NÃO EXECUTADO,,ALTA
+MUN-12,TC006,Cadastrar loja com CNPJ já existente,Usuário autenticado,"1. Inserir CNPJ de uma loja já cadastrada
+2. Clicar em Salvar",O sistema deve exibir mensagem “CNPJ já cadastrado” e impedir o envio,NÃO EXECUTADO,,ALTA
+MUN-12,TC007,Cadastrar loja com caracteres especiais no nome,Usuário autenticado,"1. Inserir caracteres inválidos no campo “Nome da Loja” (ex: “@@@!!!”)
+2. Clicar em Salvar",O sistema deve impedir o cadastro e exibir mensagem “Nome incorreto”,NÃO EXECUTADO,,Média
+MUN-12,TC008,Responsividade da tela de cadastro,,"1. Acessar a tela em dispositivos móveis e desktop
+2. Verificar o comportamento da interface","A tela deve se adaptar corretamente ao tamanho da tela, mantendo legibilidade e usabilidade",NÃO EXECUTADO,,Média
+MUN-12,TC009,Layout conforme padrão visual do sistema,,"1. Acessar a tela e comparar cores, tipografia e botões com o padrão do sistema",O layout deve seguir o padrão visual definido,NÃO EXECUTADO,,Média
+MUN-12,TC010,Mensagem de sucesso após cadastro,Usuário autenticado,"1. Preencher todos os campos corretamente
+2. Clicar em Salvar","Após sucesso, deve exibir “Loja cadastrada com sucesso” e redirecionar para a tela de perfil da loja",NÃO EXECUTADO,,Média
+MUN-12,TC0011,Validação simultânea de múltiplos erros,Usuário autenticado,"1. Deixar dois ou mais campos inválidos
+2. Clicar em Salvar",O sistema deve exibir mensagens específicas para cada campo incorreto,NÃO EXECUTADO,,Média
+MUN-12,TC0012,Falha no servidor (erro 500),Usuário autenticado,"1. Preencher todos os campos corretamente
+2. Simular erro na API (POST /lojas retorna 500)",O sistema deve exibir mensagem genérica “Erro ao cadastrar loja. Tente novamente mais tarde.”,NÃO EXECUTADO,,Média
+MUN-12,TC0013,Validação de CNPJ com máscara e sem máscara,Usuário autenticado,"1. Inserir CNPJ com máscara “12.345.678/0001-90”
+2. Inserir CNPJ sem máscara “12345678000190”
+3. Clicar em Salvar",O sistema deve aceitar ambos ou normalizar o formato automaticamente,NÃO EXECUTADO,,Média
+MUN-12,TC0014,E-mail duplicado entre lojas,Usuário autenticado,"1. Cadastrar uma loja com e-mail comercial válido
+2. Tentar cadastrar nova loja com o mesmo e-mail",O sistema deve exibir mensagem “E-mail já cadastrado”,NÃO EXECUTADO,,Média
+MUN-12,TC0015,Campos com espaços extras,Usuário autenticado,"1. Inserir valores com espaços antes e depois (ex: “ Loja Exemplo ”)
+2. Clicar em Salvar",O sistema deve limpar os espaços e aceitar o dado,NÃO EXECUTADO,,Média
+MUN-12,TC0016,Timeout na requisição,Usuário autenticado,"1. Simular lentidão ou falha de conexão da API
+2. Tentar salvar cadastro",O sistema deve exibir mensagem “Erro de conexão. Tente novamente.”,NÃO EXECUTADO,,Média
+MUN-12,TC0017,Retorno duplicado da API,Usuário autenticado,"1. Simular resposta duplicada de sucesso da API
+2. Verificar se apenas uma loja é criada",O sistema deve cadastrar apenas uma loja,NÃO EXECUTADO,,Média
+MUN-12,TC0018,Injeção de código (SQL ou script),Usuário autenticado,"1. Inserir comandos como '; DROP TABLE lojas; -- ou <script>alert('xss')</script>
+2. Clicar em Salvar","O sistema deve tratar e escapar o conteúdo, sem executar o código",NÃO EXECUTADO,,Média
+MUN-12,TC0019,Cadastrar loja com dados muito longos,Usuário autenticado,"1. Inserir mais de 255 caracteres no nome ou e-mail
+2. Clicar em Salvar","O sistema deve limitar, truncar ou exibir mensagem de erro",NÃO EXECUTADO,,Média
+MUN-12,TC0020,Acesso não autorizado,Usuário não autenticado,"1. Acessar URL da tela de cadastro diretamente
+2. Observar comportamento",O sistema deve redirecionar para a tela de login,NÃO EXECUTADO,,Média
+MUN-12,TC0021,Redirecionamento correto após sucesso,Usuário autenticado,"1. Cadastrar loja com sucesso
+2. Observar redirecionamento",O sistema deve redirecionar para o perfil da loja criada,NÃO EXECUTADO,,Média
+MUN-12,TC0022,Dados salvos corretamente no banco,Usuário autenticado,"1. Cadastrar loja normalmente
+2. Consultar API ou banco
+3. Verificar persistência dos dados",Os dados inseridos devem estar salvos corretamente no banco,NÃO EXECUTADO,,Média
+MUN-12,TC0023,Mensagem de sucesso desaparece após redirecionar,Usuário autenticado,"1. Realizar cadastro com sucesso
+2. Observar mensagem de sucesso após redirecionamento",A mensagem “Loja cadastrada com sucesso” não deve permanecer na tela seguinte,NÃO EXECUTADO,,Média

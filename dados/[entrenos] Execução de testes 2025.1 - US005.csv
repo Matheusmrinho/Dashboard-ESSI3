@@ -1,0 +1,56 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-7,TC001,Tentar recuperar senha com campo obrigatório em branco,Usuário não autenticado,"1. Deixar um ou mais campos obrigatórios vazios
+2. Clicar em Salvar",O sistema deve exibir mensagem “[Campo] obrigatório” em vermelho abaixo do input correspondente,NÃO EXECUTADO,,ALTA
+MUN-7,TC002,Inserir email inválido,Usuário não autenticado,"1. Inserir email de conta não existente 
+2. Clicar em Salvar
+",O sistema deve exibir mensagem “CNPJ incorreto” em vermelho,NÃO EXECUTADO,,ALTA
+MUN-7,TC003,Inserir mesma senha que a anterior,Usuário não autenticado,"1. Digitar a mesma senha que a cadastrada anteriormente
+2. Clicar em Salvar",O sistema deve exibir mensagem “E-mail incorreto” abaixo do campo,NÃO EXECUTADO,,ALTA
+MUN-7,TC004,Inserir senhas diferentes,Usuário não autenticado,"1. Digitar uma senha no campo criar nova senha
+2. Digitar uma senha diferente no campo confirme sua senha
+3. Clicar em Salvar",O sistema deve exibir mensagem “Telefone incorreto” em vermelho,NÃO EXECUTADO,,ALTA
+MUN-7,TC005,Verificar envio correto à API,Usuário não autenticado,"1. Preencher corretamente todos os campos
+2. Clicar em Salvar
+3. Monitorar requisição de rede (POST /usuarios)",O sistema deve realizar POST para o endpoint correto com os dados preenchidos,NÃO EXECUTADO,,ALTA
+MUN-7,TC006,Realizar troca de senha com campo SQL,Usuário não autenticado,"1. Inserir SQL injection no campo de senhas
+2. Clicar em Salvar",O sistema deve exibir mensagem “CNPJ já cadastrado” e impedir o envio,NÃO EXECUTADO,,ALTA
+MUN-7,TC007,Utilizar senha com caracteres inválidos,Usuário não autenticado,"1. Inserir caracteres inválidos no campo “Criar nova senha” (ex: “espaços, ponto e vírgula e aspas”)
+2. Clicar em Salvar",O sistema deve impedir o cadastro e exibir mensagem “Nome incorreto”,NÃO EXECUTADO,,Média
+MUN-7,TC008,"Responsividade
+ da tela de 
+recuperação de senhas",,"1. Acessar a tela em dispositivos móveis e desktop
+2. Verificar o comportamento da interface","A tela deve se adaptar corretamente ao tamanho da tela, mantendo legibilidade e usabilidade",NÃO EXECUTADO,,Média
+MUN-7,TC009,Layout conforme padrão visual do sistema,,"1. Acessar a tela e comparar cores, tipografia e botões com o padrão do sistema",O layout deve seguir o padrão visual definido,NÃO EXECUTADO,,Média
+MUN-7,TC010,Mensagem de sucesso após cadastro de nova senha,Usuário não autenticado,"1. Preencher todos os campos corretamente
+2. Clicar em Salvar","Após sucesso, deve exibir “Senha alterada com Sucesso” e redirecionar para a tela de login",NÃO EXECUTADO,,Média
+MUN-7,TC0011,Validação simultânea de múltiplos erros,Usuário não autenticado,"1. Deixar dois ou mais campos inválidos
+2. Clicar em Salvar",O sistema deve exibir mensagens específicas para cada campo incorreto,NÃO EXECUTADO,,Média
+MUN-7,TC0012,Falha no servidor (erro 500),Usuário autenticado,"1. Preencher todos os campos corretamente
+2. Simular erro na API (POST /lojas retorna 500)",O sistema deve exibir mensagem genérica “Erro ao cadastrar loja. Tente novamente mais tarde.”,NÃO EXECUTADO,,Média
+MUN-7,TC0013,Campos com espaços extras,Usuário autenticado,"1. Inserir valores com espaços antes e depois (ex: “ Loja Exemplo ”)
+2. Clicar em Salvar",O sistema deve limpar os espaços e aceitar o dado,NÃO EXECUTADO,,Média
+MUN-7,TC0014,Timeout na requisição,Usuário autenticado,"1. Simular lentidão ou falha de conexão da API
+2. Tentar salvar cadastro",O sistema deve exibir mensagem “Erro de conexão. Tente novamente.”,NÃO EXECUTADO,,Média
+MUN-7,TC0015,Retorno duplicado da API,Usuário autenticado,"1. Simular resposta duplicada de sucesso da API
+2. Verificar se apenas uma loja é criada",O sistema deve cadastrar apenas uma loja,NÃO EXECUTADO,,Média
+MUN-7,TC0016,Injeção de código (SQL ou script),Usuário autenticado,"1. Inserir comandos como '; DROP TABLE lojas; -- ou <script>alert('xss')</script>
+2. Clicar em Salvar","O sistema deve tratar e escapar o conteúdo, sem executar o código",NÃO EXECUTADO,,Média
+MUN-7,TC0017,Acesso não autorizado,Usuário não autenticado,"1. Acessar URL da tela de cadastro diretamente
+2. Observar comportamento",O sistema deve redirecionar para a tela de login,NÃO EXECUTADO,,Média
+MUN-7,TC0018,Redirecionamento correto após sucesso,Usuário autenticado,"1. Cadastrar loja com sucesso
+2. Observar redirecionamento",O sistema deve redirecionar para o perfil da loja criada,NÃO EXECUTADO,,Média
+MUN-7,TC0019,Dados salvos corretamente no banco,Usuário autenticado,"1. Cadastrar loja normalmente
+2. Consultar API ou banco
+3. Verificar persistência dos dados",Os dados inseridos devem estar salvos corretamente no banco,NÃO EXECUTADO,,Média
+MUN-7,TC0020,Mensagem de sucesso desaparece após redirecionar,Mensagem de sucesso desaparece após redirecionar,"1. Realizar cadastro com sucesso
+2. Observar mensagem de sucesso após redirecionamento",A mensagem “Loja cadastrada com sucesso” não deve permanecer na tela seguinte,NÃO EXECUTADO,,
+MUN-7,TC021,"Solicitar Recuperação 
+com E-mail Válido 
+e Cadastrado","Usuário não autenticado. 
+E-mail de teste existente 
+na base de dados.	","1. Acessar a tela ""Esqueci minha senha"". 2. Inserir um e-mail cadastrado e válido no campo. 3. Clicar em ""Enviar"". 4. Verificar a mensagem exibida.	","O sistema deve exibir a mensagem genérica: ""Instruções enviadas para o seu e-mail."" (ou o texto exato definido)",NÃO EXECUTADO,,ALTA
+MUN-7,TC022,Solicitar Recuperação com E-mail Válido e NÃO Cadastrado,"Usuário não autenticado. E-mail de teste válido, mas inexistente na base de dados.","1. Acessar a tela ""Esqueci minha senha"". 2. Inserir um e-mail NÃO cadastrado e válido no campo. 3. Clicar em ""Enviar"". 4. Verificar a mensagem exibida.","O sistema deve exibir a mesma mensagem genérica do TC021: ""Instruções enviadas para o seu e-mail."" (ou o texto exato definido)",NÃO EXECUTADO,,ALTA
+MUN-7,TC023,Validar Mensagem Genérica (Consistência),suário não autenticado. E-mails de teste para ambos cenários (existente e não existente).,1. Executar o fluxo do TC021 e anotar a mensagem. 2. Executar o fluxo do TC022 e anotar a mensagem. 3. Comparar as duas mensagens.,A mensagem de sucesso exibida no TC021 deve ser idêntica à mensagem de sucesso exibida no TC022.,NÃO EXECUTADO,,ALTA
+MUN-7,TC024,Tentar Envio com Campo E-mail em Branco,Usuário não autenticado.,"1. Acessar a tela ""Esqueci minha senha"". 2. Deixar o campo de e-mail vazio. 3. Clicar em ""Enviar"".","O sistema deve exibir a mensagem de validação: ""Campo obrigatório"" (ou equivalente) em vermelho abaixo do input, e não enviar requisição.",NÃO EXECUTADO,,ALTA
+MUN-7,TC0025,Tentar Envio com E-mail em Formato Inválido,Usuário não autenticado.,"1. Acessar a tela ""Esqueci minha senha"". 2. Inserir um texto que não é um e-mail válido (ex: ""teste@.com"" ou ""emailinvalido""). 3. Clicar em ""Enviar"".","O sistema deve exibir a mensagem de validação: ""Formato de e-mail inválido"" (ou equivalente) em vermelho abaixo do input, e não enviar requisição.",NÃO EXECUTADO,,ALTA
