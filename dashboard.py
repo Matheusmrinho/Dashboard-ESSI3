@@ -63,6 +63,12 @@ if os.path.exists(data_dir):
             data["Tem Bug"] = data["Bug"].notna()
             data["Tamanho Steps"] = data["Passos"].apply(lambda x: len(str(x)) if pd.notna(x) else 0)
             data["Tamanho Resultado"] = data["Resultado Esperado"].apply(lambda x: len(str(x)) if pd.notna(x) else 0)
+            data["Bug_Resolvido"] = (
+            data["Resultado Execução"].str.contains("PASSED", case=False, na=False) &
+            data["Bug"].notna() &
+            (data["Bug"].astype(str).str.strip() != "")
+            )
+            resolvidos = data["Bug_Resolvido"].sum()
 
             # ==============================
             # STATUS DOS TESTES
@@ -76,12 +82,13 @@ if os.path.exists(data_dir):
             falharam = data["Resultado Execução"].str.contains("FAILED|ERRO|FAILED", case=False, na=False).sum()
             nao_exec = data["Resultado Execução"].str.contains("NÃO EXECUTADO|NAO EXECUTADO", case=False, na=False).sum()
 
-            col1, col2, col3, col4, col5 = st.columns(5)
+            col1, col2, col3, col4, col5, col6 = st.columns(6)
             col1.metric("Total de Testes", total_testes)
             col2.metric("Passaram", passaram)
             col3.metric("Falharam", falharam)
             col4.metric("Não Executados", nao_exec)
             col5.metric("Com Bug", data["Tem Bug"].sum())
+            col6.metric("Bugs Resolvidos", resolvidos)
 
             # ==============================
             # DISTRIBUIÇÕES E GRÁFICOS
@@ -143,6 +150,16 @@ if os.path.exists(data_dir):
                                                 "NÃO EXECUTADO": "gray"})
             st.plotly_chart(fig_us, use_container_width=True)
 
+            # ==========================================================
+            # ✅ Cards por US – Bugs Resolvidos (incluindo 0)
+            # ==========================================================
+            st.subheader("🔢 Bugs Resolvidos por User Story")
+
+            resolvidos_por_us = data.groupby("US")["Bug_Resolvido"].sum().astype(int)
+
+            cols = st.columns(len(resolvidos_por_us))
+            for col, (us, qtd) in zip(cols, resolvidos_por_us.items()):
+                col.metric(us, qtd)
             # ==============================
             # TESTES CRÍTICOS FALHADOS
             # ==============================
