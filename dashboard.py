@@ -110,24 +110,24 @@ if os.path.exists(data_dir):
                 st.success("Todos os testes de alta prioridade já foram executados.")
 
 
-                # ==============================
-                # 📈 EVOLUÇÃO DE QUALIDADE POR SPRINT (US)
-                # ==============================
-                st.subheader("📊 Qualidade da Entrega – Taxa de Sucesso por US")
-                evo = data.groupby("US").agg(
-                    Total=("TC ID", "count"),
-                    Passados=("Resultado Execução", lambda s: s.str.contains("PASSED", case=False).sum())
-                ).reset_index()
-                evo["Taxa de Sucesso (%)"] = (evo["Passados"] / evo["Total"] * 100).round(1)
-                fig_evo = px.bar(evo, x="US", y="Taxa de Sucesso (%)", text="Taxa de Sucesso (%)",
-                                title="Taxa de Sucesso por User Story",
-                                color="Taxa de Sucesso (%)", color_continuous_scale="RdYlGn")
-                st.plotly_chart(fig_evo, use_container_width=True)
+            # ==============================
+            # 📈 EVOLUÇÃO DE QUALIDADE POR SPRINT (US)
+            # ==============================
+            st.subheader("📊 Qualidade da Entrega – Taxa de Sucesso por US")
+            evo = data.groupby("US").agg(
+                Total=("TC ID", "count"),
+                Passados=("Resultado Execução", lambda s: s.str.contains("PASSED", case=False).sum())
+            ).reset_index()
+            evo["Taxa de Sucesso (%)"] = (evo["Passados"] / evo["Total"] * 100).round(1)
+            fig_evo = px.bar(evo, x="US", y="Taxa de Sucesso (%)", text="Taxa de Sucesso (%)",
+                            title="Taxa de Sucesso por User Story",
+                            color="Taxa de Sucesso (%)", color_continuous_scale="RdYlGn")
+            st.plotly_chart(fig_evo, use_container_width=True)
 
             # ==============================
             # FALHAS POR US
             # ==============================
-            st.subheader("📉 Falhas por User Story")
+            
             falhas_por_us = data.groupby(["US", "Resultado Execução"]).size().unstack(fill_value=0)
             falhas_por_us = falhas_por_us.reindex(columns=["PASSED", "FAILED"], fill_value=0)
             fig_us = px.bar(falhas_por_us, x=falhas_por_us.index, y=["PASSED", "FAILED"],
@@ -157,6 +157,22 @@ if os.path.exists(data_dir):
             ).reset_index()
             sumario_us["Taxa de Sucesso (%)"] = (sumario_us["Passaram"] / sumario_us["Total"] * 100).round(1)
             st.dataframe(sumario_us)
+
+        
+
+            # ==============================
+            #💚 Caixa de Luz Verde – US 100 % Aprovadas
+            # ==============================
+            luz_verde = sumario_us[sumario_us["Taxa de Sucesso (%)"] == 100]
+            if not luz_verde.empty:
+                fig_lv = px.bar(luz_verde.sort_values("Total"), y="US", x="Total",
+                                orientation="h", text="Total",
+                                title="💚 US 100 % Aprovadas – Prontas para Entrega",
+                                color="Total", color_continuous_scale="Greens")
+                fig_lv.update_traces(texttemplate="%{x} casos", textposition="outside")
+                st.plotly_chart(fig_lv, use_container_width=True)
+            else:
+                st.info("Nenhuma US está 100 % aprovada ainda.")
 
             # ==============================
             # SIMILARIDADE ENTRE TESTES
