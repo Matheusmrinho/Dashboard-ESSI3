@@ -124,15 +124,23 @@ if os.path.exists(data_dir):
                             color="Taxa de Sucesso (%)", color_continuous_scale="RdYlGn")
             st.plotly_chart(fig_evo, use_container_width=True)
 
-            # ==============================
-            # FALHAS POR US
-            # ==============================
             
-            falhas_por_us = data.groupby(["US", "Resultado Execução"]).size().unstack(fill_value=0)
-            falhas_por_us = falhas_por_us.reindex(columns=["PASSED", "FAILED"], fill_value=0)
-            fig_us = px.bar(falhas_por_us, x=falhas_por_us.index, y=["PASSED", "FAILED"],
-                            title="Resultados por US", barmode="group",
-                            color_discrete_map={"PASSED": "green", "FAILED": "red"})
+            # ==============================
+            # RESULTADOS POR US (COM NÃO EXECUTADO)
+            # ==============================
+            res_us = data.groupby(["US", "Resultado Execução"]).size().unstack(fill_value=0)
+
+            # garante as três colunas, mesmo que vazias
+            for col in ["PASSED", "FAILED", "NÃO EXECUTADO"]:
+                if col not in res_us:
+                    res_us[col] = 0
+            res_us = res_us[["PASSED", "FAILED", "NÃO EXECUTADO"]]
+
+            fig_us = px.bar(res_us, x=res_us.index, y=["PASSED", "FAILED", "NÃO EXECUTADO"],
+                            title="Resultados por User Story", barmode="group",
+                            color_discrete_map={"PASSED": "green",
+                                                "FAILED": "red",
+                                                "NÃO EXECUTADO": "gray"})
             st.plotly_chart(fig_us, use_container_width=True)
 
             # ==============================
