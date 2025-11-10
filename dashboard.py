@@ -150,16 +150,30 @@ if os.path.exists(data_dir):
                                                 "NÃO EXECUTADO": "gray"})
             st.plotly_chart(fig_us, use_container_width=True)
 
+           # ==========================================================
+            # 📈 Taxa de Resolução de Bugs por US
             # ==========================================================
-            # ✅ Cards por US – Bugs Resolvidos (incluindo 0)
-            # ==========================================================
-            st.subheader("🔢 Bugs Resolvidos por User Story")
+            # 1) cria coluna booleana: FAILED que tem link
+            data["FAILED_com_link"] = (
+                data["Resultado Execução"].str.contains("FAILED", case=False, na=False) &
+                data["Bug"].notna() &
+                (data["Bug"].astype(str).str.strip() != "")
+            )
 
-            resolvidos_por_us = data.groupby("US")["Bug_Resolvido"].sum().astype(int)
+            # 2) agrega por US
+            taxa_df = (
+                data.groupby("US")
+                .agg(
+                    Total_Bugs=("FAILED_com_link", "sum"),
+                    Resolvidos=("Bug_Resolvido", "sum")
+                )
+                .assign(Taxa=lambda df: (df["Resolvidos"] / df["Total_Bugs"] * 100).round(1))
+                .fillna(0)
+                .reset_index()
+            )
 
-            cols = st.columns(len(resolvidos_por_us))
-            for col, (us, qtd) in zip(cols, resolvidos_por_us.items()):
-                col.metric(us, qtd)
+            st.subheader("📈 Taxa de Resolução de Bugs")
+            st.dataframe(taxa_df, use_container_width=True)
             # ==============================
             # TESTES CRÍTICOS FALHADOS
             # ==============================
