@@ -1,0 +1,14 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-152,TC001,Consistência de Saldo entre módulos,"Função getSaldo() disponível, retorna saldo atual",1. Chamar getSaldo() no módulo Home.2. Chamar getSaldo() no módulo Moedas.,Ambos retornam o mesmo valor numérico (ex: 105).,PASSED,,ALTA
+MUN-152,TC002,Listagem de atividades – tipos de transação,Função listarTransacoes() retorna ganhos e gastos,1. Executar listarTransacoes().2. Validar itens do tipo crédito (+) e débito (-).,A lista contém transações dos dois tipos com descrição e valor correto.,PASSED,,ALTA
+MUN-152,TC003,Exibição do componente Pix – campos obrigatórios,Função gerarRecargaPix() retorna dados de recarga,"1. Executar gerarRecargaPix().2. Validar se retorna QR Code, código Pix e botão disponível.","Estrutura retornada contém: qrCode, codigoPix, acaoCopiar.",PASSED,,ALTA
+MUN-152,TC004,"Disponibilidade do botão ""Ver Extrato""",Função isExtratoDisponivel() retorna estado,1. Chamar isExtratoDisponivel().2. Validar retorno.,"A função retorna true, indicando botão habilitado.",PASSED,,Média
+MUN-152,TC005,Atualização de saldo – ganho de moedas,Saldo inicial 105; função ganharMoedas(v),1. Chamar ganharMoedas(5).2. Chamar getSaldo().,Saldo = 110 e transação registrada como crédito de +5.,PASSED,,ALTA
+MUN-152,TC006,Recarga PIX – copiar código,Função copiarCodigoPix() disponível,1. Chamar copiarCodigoPix(codigo).2. Observar retorno.,A função retorna sucesso e o código informado.,PASSED,,Média
+MUN-152,TC007,Gasto – campanha com saldo suficiente,Saldo inicial 300; custo 200,1. Chamar gastarMoedas(200).2. Verificar saldo e transação.,Saldo final 100 e transação de -200 registrada.,PASSED,,ALTA
+MUN-152,TC008,Gasto – saldo insuficiente (premium),Saldo inicial 105; custo 500,1. Executar gastarMoedas(500).2. Verificar saldo.,A função retorna erro; saldo permanece 105; nenhuma transação é registrada.,PASSED,,ALTA
+MUN-152,TC009,Validação de botões – saldo insuficiente,Saldo 105; custo premium 500,1. Executar canAfford(500).2. Validar retorno.,"Função retorna false, indicando recurso desabilitado.",PASSED,,ALTA
+MUN-152,TC010,Bônus diário – prevenir duplicidade,Função receberBonusDiario(); bônus já recebido hoje,1. Chamar receberBonusDiario() novamente.2. Verificar saldo e transação.,Nenhuma alteração no saldo; função retorna aviso de bônus já creditado.,PASSED,,ALTA
+MUN-152,TC011,Exibição de saldo zero,Saldo atual = 0,1. Chamar getSaldo().2. Chamar canAfford() para ações.,"Retorna ""0""; todas funções de gasto retornam false.",PASSED,,Média
+MUN-152,TC012,Extrato completo com saldo zero,Saldo = 0; transações armazenadas,1. Chamar listarTransacoes() para extrato completo.,"Extrato retorna todas as transações existentes, mesmo com saldo zero.",PASSED,,Média

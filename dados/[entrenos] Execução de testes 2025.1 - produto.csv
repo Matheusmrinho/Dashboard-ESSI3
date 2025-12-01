@@ -1,0 +1,23 @@
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+,TC001,Criar produto com sucesso,API funcionando,1. Chamar createProduto(payload),Produto é criado e retornado com status 201,PASSED,,ALTA
+,TC002,Tratar erro ao criar produto,API retorna erro 400,1. Chamar createProduto(payload),Uma exceção é lançada,PASSED,,ALTA
+,TC003,Criar produto com imagem (multipart),API aceita multipart/form-data,"1. Criar FormData2. Chamar createProduto(formData, true)",Produto criado com imagem corretamente,PASSED,,ALTA
+,TC004,Obter lista de produtos,API retorna lista,1. Chamar getProdutos(),Lista de produtos é retornada,PASSED,,ALTA
+,TC005,Obter analytics dos produtos,API retorna dados,1. Chamar getProdutosAnalytics(),Estatísticas são retornadas,PASSED,,ALTA
+,TC006,Atualizar produto com sucesso,Produto existe,"1. Chamar patchProduto(id, payload)",Produto é atualizado e retornado,PASSED,,ALTA
+,TC007,Atualizar produto com imagem,Produto existe,"1. Criar FormData com imagem2. Chamar patchProduto(id, payload)",Produto atualizado com nova imagem,PASSED,,ALTA
+,TC008,Tratar erro ao atualizar produto,Produto não existe,1. Chamar patchProduto(id inválido),Uma exceção é lançada,PASSED,,ALTA
+,TC009,Deletar produto com sucesso,Produto existe,1. Chamar deleteProduto(id),Retorna undefined (status 204),PASSED,,ALTA
+,TC010,Tratar erro ao deletar produto,Produto não existe,1. Chamar deleteProduto(id inválido),Uma exceção é lançada,PASSED,,ALTA
+,TC0011,Renderizar tela em modo de criação,Nenhum produto enviado por parâmetros,1. Abrir CreateProduto,"Inputs vazios e botão ""Salvar"" aparecem",PASSED,,ALTA
+,TC0012,Renderizar tela em modo de edição,route.params.produto fornecido,1. Abrir CreateProduto,"Inputs preenchidos + botões ""Salvar"" e ""Excluir"" aparecem",PASSED,,ALTA
+,TC0013,Criar produto usando a UI,Tela aberta em modo criação,1. Preencher campos2. Escolher imagem3. Pressionar “Salvar”,createProduto é chamado e aparece mensagem de sucesso,PASSED,,ALTA
+,TC0014,Exibir erro ao falhar criação,API retorna erro,1. Preencher inputs2. Pressionar “Salvar”,Mensagem “Não foi possível criar o produto.” aparece,PASSED,,Média
+,TC0015,Atualizar produto usando a UI,Tela em modo edição,1. Alterar valores2. Pressionar “Salvar”,patchProduto é chamado com novos dados,PASSED,,ALTA
+,TC0016,Deletar produto usando a UI,Tela em modo edição,1. Pressionar “Excluir”,deleteProduto(id) é chamado e navegação retorna,PASSED,,ALTA
+,TC0017,Exibir indicador de carregamento,Requisições não resolvidas,1. Renderizar ProdutoScreem,"Exibe texto ""Carregando...""",PASSED,,ALTA
+,TC0018,Renderizar analytics e lista após carregar,API retorna lista e analytics,1. Renderizar2. Acionar useFocusEffect,Cards de resumo + lista de produtos aparecem,PASSED,,ALTA
+,TC0019,Filtrar produtos pela busca,Lista já carregada,"1. Digitar no campo de busca2. Procurar ""Produto A""",Exibe somente produtos correspondentes,PASSED,,ALTA
+,TC0020,Navegar para criação de produto,Lista carregada,1. Pressionar botão “+”,Navega para CREATEPRODUTO,PASSED,,ALTA
+,TC0021,Navegar para edição de produto,Produtos listados,1. Pressionar item “Produto A”,Navega para CREATEPRODUTO com produto nos parâmetros,PASSED,,ALTA
+,TC0022,Executar ação ao clicar no card resumo,Lista carregada,1. Pressionar card “Visão Geral”,console.log é chamado com mensagem de clique,PASSED,,ALTA

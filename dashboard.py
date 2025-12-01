@@ -10,6 +10,7 @@ st.set_page_config(page_title="Dashboard Inteligente de Testes", layout="wide")
 st.title("🧩 Dashboard Inteligente de Casos de Teste")
 st.markdown("""
 Este painel identifica **problemas estruturais, redundâncias e padrões** nos casos de teste.
+Agora também diferencia **Testes Unitários vs Testes de Integração** automaticamente.
 """)
 
 # ==============================
@@ -32,8 +33,10 @@ if os.path.exists(data_dir):
             # Padroniza colunas
             df.columns = [
                 "Story Link", "TC ID", "Título do Teste", "Pré-condição",
-                "Passos", "Resultado Esperado", "Resultado Execução", "Bug", "Prioridade"
+                "Passos", "Resultado Esperado", "Resultado Execução",
+                "Bug", "Prioridade"
             ]
+
             df["Arquivo"] = file
             # Extrai US do nome do arquivo
             us = file.split("US")[1].split(".")[0] if "US" in file else "Desconhecida"
@@ -42,6 +45,7 @@ if os.path.exists(data_dir):
 
         data = pd.concat(dfs, ignore_index=True)
         data = data.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+
 
         # ==============================
         # FILTRO POR US

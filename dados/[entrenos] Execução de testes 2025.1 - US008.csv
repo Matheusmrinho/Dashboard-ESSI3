@@ -1,0 +1,11 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-157,TC001,Renderização de dados da loja,Dados da loja fornecidos via parâmetros,"1. Executar a função/componente com nome, slogan, endereço, horário e contato.2. Validar retorno dos valores.",Todos os dados são retornados/exibidos corretamente.,PASSED,,ALTA
+MUN-157,TC002,Exibição de logotipo e avaliação,"Logotipo, nota e contagem fornecidos via parâmetros","1. Executar componente com os dados.2. Verificar logotipo, nota e contagem retornados.",Logotipo aparece corretamente e avaliação é retornada com os valores corretos.,PASSED,,ALTA
+MUN-157,TC003,Renderização de informações do produto,"Produto com nome, descrição, preço e imagem disponível",1. Executar componente com o produto.2. Validar campos retornados.,"Nome, descrição, preço e imagem são retornados corretamente.",PASSED,,ALTA
+MUN-157,TC004,"Botão ""Adicionar ao Carrinho""",Produto válido e função de callback disponível,1. Executar componente com o produto.2. Simular chamada do callback.,A função é chamada com o produto correto.,PASSED,,ALTA
+MUN-157,TC007,Pesquisa de produto – Sucesso,"Produto ""Bolo Red Velvet"" presente","1. Executar searchProducts(lista, ""Red"").2. Verificar retorno.","Apenas os produtos contendo ""Red"" são retornados.",PASSED,,ALTA
+MUN-157,TC008,Pesquisa de produto – Sem resultado,"Nenhum produto com o termo ""Pizza""","1. Executar searchProducts(lista, ""Pizza"").2. Verificar lista retornada.",Lista vazia é retornada.,PASSED,,Média
+MUN-157,TC009,Abrir detalhes do produto,Função onOpenDetails disponível,1. Executar componente com o produto.2. Simular chamada de onOpenDetails.,A função é executada com o produto correto.,PASSED,,Média
+MUN-157,TC013,Limpeza da barra de pesquisa,Filtro ativo ou texto na pesquisa,"1. Executar função de limpar pesquisa ou searchProducts(lista, """").2. Validar lista retornada.",Todos os produtos retornam.,PASSED,,Média
+MUN-157,TC014,Detalhe de produto sem descrição,Produto sem descrição curta disponível,1. Executar componente com produto sem descrição.2. Validar campos retornados.,Detalhes (imagem e preço) retornam corretamente mesmo sem descrição.,PASSED,,Média

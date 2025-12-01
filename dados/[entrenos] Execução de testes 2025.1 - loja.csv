@@ -1,0 +1,16 @@
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+,TC001,Exibir indicador de carregamento inicial,Serviço getLojaDetails ainda não retornou,1. Abrir a TelaLoja,"Texto ""Carregando sua loja..."" é exibido",PASSED,,ALTA
+,TC002,Exibir erro quando usuário não possui loja cadastrada,AuthContext retorna user: null,1. Abrir TelaLoja,"Exibe mensagem: ""Você não possui uma loja cadastrada.""",PASSED,,ALTA
+,TC003,Exibir erro quando API falha ao buscar detalhes da loja,Serviço getLojaDetails lança erro,1. Abrir TelaLoja,"Exibe mensagem: ""Não foi possível carregar os detalhes da loja.""",PASSED,,ALTA
+,TC004,Exibir erro quando lojaDetails retorna null,getLojaDetails retorna null,1. Abrir TelaLoja,"Exibe mensagem: ""Não foi possível carregar os detalhes da loja.""",PASSED,,ALTA
+,TC005,Exibir detalhes completos da loja,getLojaDetails retorna dados válidos,1. Abrir TelaLoja2. Aguardar carregamento,"Mostra nome, descrição, email, telefone, produtos e logo da loja",PASSED,,ALTA
+,TC006,Filtrar produtos através da barra de pesquisa,Produtos carregados corretamente,"1. Digitar ""bolo"" na pesquisa2. Limpar texto","Lista exibe somente Bolo de Chocolate, depois restabelece ambos",PASSED,,ALTA
+,TC007,Navegar para TelaProduto ao clicar em produto,Produtos carregados com sucesso,"1. Pressionar produto ""Bolo de Chocolate""","Navega para TelaProduto, passando { productId: 101 }",PASSED,,ALTA
+,TC008,Exibir alerta ao tentar adicionar ao carrinho item da própria loja,Loja pertence ao usuário autenticado,"1. Pressionar botão ""Adicionar ao Carrinho""","Exibe alerta ""Você não pode comprar seus próprios itens."" (tipo error)",PASSED,,ALTA
+,TC009,Exibir indicador de carregamento inicial,Tela aberta com productId válido,1. Abrir TelaProduto,"Texto ""Carregando produto..."" é exibido",PASSED,,ALTA
+,TC010,Exibir erro quando API falha,getProdutoById lança erro,1. Abrir TelaProduto,"Exibe mensagem: ""Não foi possível carregar o produto.""",PASSED,,ALTA
+,TC011,Exibir mensagem quando produto não for encontrado,getProdutoById retorna null,1. Abrir TelaProduto,"Exibe mensagem: ""Produto não encontrado.""",PASSED,,ALTA
+,TC012,Alterar quantidade via Stepper,Produto carregado com sucesso,1. Pressionar +2. Pressionar -,Quantidade muda de 1 → 2 → 1,PASSED,,ALTA
+,TC013,Exibir alerta ao adicionar produto da própria loja,Produto pertence ao usuário logado,"1. Pressionar botão ""Adicionar""","Exibe alerta ""Você não pode comprar seus próprios itens."" (tipo error)",PASSED,,ALTA
+,TC014,Exibir alerta ao pressionar ícone do carrinho no header,Produto pertence ao próprio usuário,1. Pressionar ícone do carrinho,"Exibe alerta ""Você não pode comprar seus próprios itens."" (tipo error)",PASSED,,ALTA
+,TC015,Navegar para tela anterior ao clicar no botão de voltar,Produto carregado com sucesso,1. Pressionar botão de voltar do Header,Executa goBack(),PASSED,,ALTA

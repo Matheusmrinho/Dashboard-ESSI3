@@ -1,0 +1,9 @@
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+,TC001,Exibição de erro ao tentar logar com email e senha vazios,Usuário na tela de Login,1. Abrir a tela de Login2. Pressionar “Fazer Login”,"Exibe alerta: ""Erro – Preencha e-mail e senha.""API não é chamada",PASSED,,ALTA
+,TC002,Exibição de erro para formato de email inválido,Usuário na tela de Login,1. Inserir email inválido2. Inserir senha válida3. Pressionar “Fazer Login”,"Exibe alerta: ""Erro – E-mail inválido.""",PASSED,,ALTA
+,TC003,Login bem-sucedido com credenciais válidas,API pública retorna token e API privada retorna dados do usuário,1. Inserir email válido2. Inserir senha válida3. Pressionar “Fazer Login”,API chamada corretamenteUsuário salvo no AsyncStorageNenhum erro exibido,PASSED,,ALTA
+,TC004,Exibição de erro genérico para erro inesperado (500),API pública retorna status 500,1. Inserir email válido2. Inserir senha válida3. Pressionar “Fazer Login”,"Exibe alerta: ""Ocorreu um erro inesperado. Tente novamente mais tarde.""",PASSED,,ALTA
+,TC005,Exibição de erro para credenciais inválidas (401),API pública retorna status 401,1. Inserir email inválido2. Inserir senha incorreta3. Pressionar “Fazer Login”,"Exibe alerta: ""Erro – E-mail ou senha incorretos.""",PASSED,,ALTA
+,TC006,Exibição de erro por limite excedido de tentativas (429),API pública retorna status 429,1. Inserir email válido2. Inserir senha válida3. Pressionar “Fazer Login”,"Exibe alerta: ""Limite de Tentativas Excedido – Você excedeu o número máximo de tentativas de login.""",PASSED,,ALTA
+,TC007,Navegar para tela de criação de conta,Usuário na tela de Login,1. Pressionar “Criar conta”,Navega para rota: ROUTES.SIGN_UP,PASSED,,ALTA
+,TC008,Navegar para tela de esqueci minha senha,Usuário na tela de Login,1. Pressionar “Esqueceu sua senha?”,Navega para rota: ROUTES.FORGOT_PASSWORD,PASSED,,ALTA
