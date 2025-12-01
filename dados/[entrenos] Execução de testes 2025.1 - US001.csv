@@ -11,7 +11,7 @@ MUN-6,TC003,Usuario não possue cadastro e tenta fazer login ,Usuário não cada
 3. Clicar em “Fazer Login”","O usuário deve ver a mensagem de de empty state: ""Email ou Senha incorreta."". ",PASSED,,ALTA
 MUN-6,TC004,"Realizar login com caracteres inválidos (acentos, símbolos, espaços)",,"1. Acessar a tela de Login
 2. Digitar caracteres inválidos no campo de e-mail (ex: @@@ ou joão@@mail..com)
-3. Clicar em “Fazer Login”",O usuario deve receber a mensagem de realizar o login com os dados corretos ,PASSED,https://yagoderr.atlassian.net/browse/MUN-134?atlOrigin=eyJpIjoiODRhZDgwNWFlN2RlNGM0NGE2YjM2ZDQ5MzkyMmM4YjIiLCJwIjoiaiJ9,ALTA
+3. Clicar em “Fazer Login”",O usuario deve receber a mensagem de realizar o login com os dados corretos ,FAILED,https://yagoderr.atlassian.net/browse/MUN-134?atlOrigin=eyJpIjoiODRhZDgwNWFlN2RlNGM0NGE2YjM2ZDQ5MzkyMmM4YjIiLCJwIjoiaiJ9,ALTA
 MUN-6,TC005,Realizar login e interferir no meio da requisicao,Usuário precisa estar cadastrado,"1. Tela inicial -> Tela de login  2. logar (user:admin123, senha: 123123)",O login não deve ser feito e não deve ficar registrado o usuario no app,FAILED,https://yagoderr.atlassian.net/browse/MUN-136?atlOrigin=eyJpIjoiN2MxODYzMGZjZGMxNDE1YTk2MzgyZjI1ZWE3ZTUxYTUiLCJwIjoiaiJ9,ALTA
 MUN-6,TC006,Tentar login sem preencher campos,,"1. Acessar a tela de Login
 2. Deixar ambos os campos vazios
@@ -25,4 +25,4 @@ MUN-6,TC0012,Tentar fazer login em uma conta bloqueada administrativamente ,A co
 MUN-6,TC0013,Realizar login sem informar senha,Usuário não pode estar cadastrado,"1. Tela inicial -> Tela de login  2. logar (user:admin123, senha: )",Deve exibir uma mensagem informando que é preciso preencher o campo de senha para realizar o login,PASSED,,ALTA
 MUN-6,TC0019,Tentar logar com campo em branco do e-mail ,Usuário precisa estar cadastrado,1. Tela Inicial -> 2. Tela de login -> apertar em entrar com campo de email vazio,"Deve apresentar ao usuário ""insira um e-mail válido""",PASSED,,Média
 MUN-6,TC0021,"Usuário clica no  botão ""esqueceu a senha?"" e é redirecionado para a tela de recuperação de senha",Usuário cadastrado,"1. Inserir e-mail de um usuário e senha de outro
-2. Clicar em “Fazer Login”",O sistema deve redirecionar para a tela de recuperação de senha ,PASSED,https://yagoderr.atlassian.net/browse/MUN-144?atlOrigin=eyJpIjoiNGE3YjQ4MTU5ZTQwNDc2NWI4NmJhOGU4ODQyYTcyYjgiLCJwIjoiaiJ9,ALTA
+2. Clicar em “Fazer Login”",O sistema deve redirecionar para a tela de recuperação de senha ,FAILED,https://yagoderr.atlassian.net/browse/MUN-144?atlOrigin=eyJpIjoiNGE3YjQ4MTU5ZTQwNDc2NWI4NmJhOGU4ODQyYTcyYjgiLCJwIjoiaiJ9,ALTA

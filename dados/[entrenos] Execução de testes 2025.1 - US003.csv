@@ -9,7 +9,7 @@ MUN-5,TC003,"[Validação] Formato de E-mail
 INVÁLIDO ao perder o foco (RF-002).","Usuário na tela de 
 Cadastro.","1. Inserir e-mail em formato inválido (ex: teste@teste). 
 2. Tocar fora do campo (perder o foco).","Uma mensagem de erro deve ser exibida abaixo 
-do campo: ""Formato de e-mail inválido"".",PASSED,link do bug no jira,ALTA
+do campo: ""Formato de e-mail inválido"".",FAILED,link do bug no jira,ALTA
 MUN-5,TC004,"[UX] Alternar Visibilidade da Senha 
 (Ícone ""olho"") (RNF-004).","Usuário digitando no 
 campo Senha.","1. Digitar uma senha. 
@@ -26,13 +26,13 @@ MUN-5,TC007,"[Validação] Senha Mínima:
 Cadastro.","1. Inserir Nome e E-mail válidos. 
 2. Inserir uma senha abaixo do limite mínimo.","O sistema deve exibir uma mensagem de 
 erro abaixo do campo Senha 
-(Ex: ""A senha deve ter no mínimo 6 caracteres"").",PASSED,link do bug no jira,ALTA
+(Ex: ""A senha deve ter no mínimo 6 caracteres"").",FAILED,link do bug no jira,ALTA
 MUN-5,TC008,"[UX] Posicionamento e Clareza das 
 Mensagens de Erro (RNF-003).","Campos do formulário 
 estão em estado de erro.","1. Forçar um erro em cada campo individualmente. 
 2. Forçar erros em todos os campos.","Todas as mensagens de erro devem estar claras 
 e posicionadas diretamente abaixo do campo 
-correspondente.",PASSED,link do bug no jira,Média
+correspondente.",FAILED,link do bug no jira,Média
 MUN-5,TC009,"[UX] Comportamento do Botão 
 durante o Carregamento (RNF-005).","Usuário preencheu
  os dados.","1. Clicar em ""Cadastrar"".
@@ -67,7 +67,7 @@ Cadastro.","1. Cadastrar um e-mail com letras maiúsculas (Ex: Teste@email.com).
  2. Tentar cadastrar teste@email.com (apenas minúsculas).","O sistema não deve permitir o segundo cadastro, 
 pois e-mails são geralmente tratados como não 
 case-sensitive (o email é o mesmo) ou deve seguir 
-a regra definida pela API.",PASSED,link do bug no jira,Média
+a regra definida pela API.",FAILED,link do bug no jira,Média
 MUN-5,TC0018,"[Validação] Nome com Caracteres 
 Especiais ou Números.","Usuário na tela de
  Cadastro.","1. Inserir no campo Nome: João 123 ou
