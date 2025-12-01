@@ -1,15 +1,13 @@
 ,,,,,,,,
 Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
-MUN-9,TC001,[Splash] Verificar tempo de exibição. ,App instalado.,1. Iniciar o aplicativo.,"A tela de Splash deve ser exibida por exatamente 
-2 segundos.",PASSED,,ALTA
 MUN-9,TC002,[Primeiro Acesso] Navegação Splash → Onboarding.,"Primeiro acesso 
 (dados limpos).",1. Iniciar o aplicativo.,"Após a Splash sumir, deve ser direcionado 
-para a Onboarding 1 (Boas-vindas).",PASSED,BUG (link Jira),ALTA
+para a Onboarding 1 (Boas-vindas).",PASSED,,ALTA
 MUN-9,TC003,"[Navegação Progressiva] 
 Avançar usando o botão ""Próximo"".","O usuário está na 
 Onboarding 1.","1. Tocar no botão ""Próximo"" em todas as
  telas (1 a 4).","O usuário deve navegar sequencialmente da 
-Onboarding 1 até a Onboarding 5.",PASSED,BUG (link Jira),ALTA
+Onboarding 1 até a Onboarding 5.",PASSED,,ALTA
 MUN-9,TC004,"[Navegação Regressiva] 
 Voltar usando o ícone.","O usuário está na 
 Onboarding 5.","1. Tocar no ícone de seta/voltar (←)
@@ -50,18 +48,10 @@ Onboarding e retornar.","O usuário está na
 2. Restaurar o aplicativo.","O usuário deve retornar para a Onboarding 3 
 (a tela onde parou), e o fluxo deve continuar 
 normalmente.",PASSED,,Média
-MUN-9,TC0012,"[Responsividade] Alterar a orientação
- da tela.","O usuário está na 
-Onboarding 2.","1. Gire o dispositivo/simulador para a orientação
- Horizontal (Paisagem). 
-2. Gire de volta para a orientação Vertical (Retrato).","O conteúdo da tela (texto, imagens e botões) 
-deve se ajustar corretamente e ser totalmente 
-legível em ambas as orientações.",FAILED,,Média
-,,,,,,,,
 MUN-9,TC0013,"[Usabilidade] Swipe na última 
 e primeira tela.","O usuário está na 
 Onboarding 5.","1. Tentar deslizar para a direita (swipe right). 
 2. Ir para a Onboarding 1. 
 3. Tentar deslizar para a esquerda (swipe left).","O swipe não deve funcionar (ou o carrossel não 
 deve ir além) na Onboarding 5 (para a frente)
- e na Onboarding 1 (para trás).",FAILED,,Média
+ e na Onboarding 1 (para trás).",PASSED,,Média

@@ -1,0 +1,10 @@
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+,TC001,Exibir texto de carregamento enquanto busca os pedidos,pedidoService.getPedidos não resolve,1. Abrir tela MeusPedidos,"Exibe ""Carregando pedidos...""",PASSED,,ALTA
+,TC002,Exibir mensagem quando não existe nenhum pedido,getPedidos retorna [],1. Abrir tela MeusPedidos,"Exibe ""Nenhum pedido encontrado.""",PASSED,,ALTA
+,TC003,Exibir lista de pedidos quando carregados com sucesso,getPedidos retorna lista com pedidos,1. Abrir tela MeusPedidos2. Aguardar renderização,"Exibe informações dos pedidos:– Quantidade de itens– Valor total– Status (ex: PENDENTE, PROCESSANDO)",PASSED,,ALTA
+,TC004,Exibir alerta ao falhar carregamento dos pedidos,getPedidos lança erro,1. Abrir tela MeusPedidos,"Exibe: Alert.alert(""Erro"", ""Não foi possível carregar os pedidos."")",PASSED,,ALTA
+,TC005,Abrir modal ao clicar em um pedido,getPedidos retorna lista de pedidos,"1. Abrir tela MeusPedidos2. Pressionar ""Pedido Cliente A""",Modal exibe:– Detalhes do Pedido #1– Cliente– Status– Lista de itens– Total– Observação,PASSED,,ALTA
+,TC006,Alterar status e salvar alterações,getPedidos retorna pedidosupdatePedidoStatus resolve,1. Abrir pedido Cliente A2. Abrir seletor de status3. Selecionar “Pago”4. Alterar observação5. Pressionar “Salvar Alterações”,"Chama updatePedidoStatus(1, { status:""pago"", descricao:""Nova observação"" })Mostra: ""Sucesso – Pedido atualizado com sucesso!""Fecha modalLista atualiza status para PAGO",PASSED,,ALTA
+,TC007,Exibir erro ao falhar atualização do pedido,updatePedidoStatus lança erro,1. Abrir pedido Cliente A2. Pressionar “Salvar Alterações”,"Exibe: Alert.alert(""Erro"", ""Não foi possível atualizar o pedido."")",PASSED,,ALTA
+,TC008,Fechar modal ao pressionar botão de fechar,Modal aberto,1. Pressionar botão close-modal-button,"Modal fecha (não exibe mais ""Detalhes do Pedido #1"")",PASSED,,ALTA
+,TC009,Navegar de volta ao pressionar botão voltar do header,Tela MeusPedidos aberta,1. Pressionar botão “Back” do header,Executa goBack(),PASSED,,ALTA

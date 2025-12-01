@@ -1,0 +1,47 @@
+,,,,,,,,
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+MUN-147 ,TC001,"Validação de Preço (R$) - 
+Entrada Válida",N/A,"1. Tentar salvar um produto com 
+Preço (R$) = ""10.50"".","O campo Preço (R$) deve ser aceito e 
+formatado corretamente (R$ 10,50).",PASSED,,ALTA
+MUN-147 ,TC002,"Validação de Preço (R$) - 
+Entrada Inválida (Texto)",N/A,"1. Tentar salvar um produto com 
+Preço (R$) = ""Dez Reais"".","O sistema deve impedir o salvamento e exibir uma
+ mensagem de erro indicando que o preço deve ser 
+um valor numérico.",PASSED,,ALTA
+MUN-147 ,TC003,"Contador de Quantidade - 
+Incremento Mínimo",N/A,"1. Clicar no botão + (incremento) no campo
+ Quantidade quando o valor é 0.","O campo Quantidade deve ser atualizado para
+ 1.",PASSED,,ALTA
+MUN-147 ,TC004,"Contador de Quantidade - 
+Decremento Mínimo",N/A,"1. Clicar no botão - (decremento) no campo 
+Quantidade quando o valor é 0.","O campo Quantidade deve permanecer em 0
+ (não aceita valor negativo).",PASSED,,ALTA
+MUN-147 ,TC005,Campo Obrigatório - Nome do Item,N/A,"1. Tentar salvar um produto deixando o campo 
+Nome do Item vazio.","O sistema deve exibir uma mensagem de erro e
+ impedir o salvamento.",PASSED,,ALTA
+MUN-147 ,TC007,Criação de Produto - Sucesso,N/A,"1. Clicar no botão +. 2. Preencher todos os 
+campos válidos. 3. Clicar em salvar.","O novo produto deve aparecer na Lista de 
+Produtos principal e a contagem de Total de 
+Produtos deve ser incrementada em 1.",PASSED,,ALTA
+MUN-147 ,TC009,Busca de Produto - Encontrado,"Lista de produtos 
+visível (ex: 'Bolo red 
+velvet').","1. Digitar ""Bolo"" no campo de Pesquisa.","Somente produtos com ""Bolo"" no nome ('Bolo red 
+velvet', 'Bolo de cenoura') devem ser exibidos.",PASSED,,Média
+MUN-147 ,TC010,Busca de Produto - Não Encontrado,"Lista de produtos 
+visível.","1. Digitar ""Pão de Queijo"" no campo de 
+Pesquisa.","Nenhuma lista de produtos deve ser exibida, ou 
+uma mensagem de ""Nenhum produto encontrado"" 
+deve aparecer.",PASSED,,ALTA
+MUN-147 ,TC012,"Exclusão de Produto - Sucesso e 
+Atualização","Produto 'Macarons 
+coloridos' cadastrado.",1. Executar a exclusão (TC-011) e confirmar.,"O produto 'Macarons coloridos' não deve mais 
+estar na lista e a contagem de Total de Produtos 
+deve ser decrementada em 1.",PASSED,,ALTA
+MUN-147 ,TC019,"Persistência de Edição - 
+Múltiplos Campos","Produto 'Macarons' 
+com 125 qtd e preço 
+R$ 8,00.","1. Alterar a Quantidade para 100. 
+2. Alterar o Preço para R$ 9,50. 
+3. Salvar.","Na lista principal, o produto 'Macarons' deve 
+exibir 100 qtd e R$ 9,50 (Critério 3.4).",PASSED,,ALTA

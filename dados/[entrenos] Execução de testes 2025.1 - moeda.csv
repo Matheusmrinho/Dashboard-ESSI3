@@ -1,0 +1,12 @@
+Story Link,TC ID,Test Case (Title),Pre Condition,Steps,Expected Result,Execution Result,Bug?,Prioridade
+,TC001,Exibir indicador de carregamento inicial,getTransacoes ainda não retornou,1. Abrir ExtratoScreen,"Mostra ""Carregando extrato...""",PASSED,,ALTA
+,TC002,Exibir erro quando falha ao buscar transações,getTransacoes lança erro,1. Abrir ExtratoScreen,"Exibe mensagem de erro retornada (""Network Error"") + mensagem: ""Não foi possível carregar seu extrato. Tente novamente.""",PASSED,,ALTA
+,TC003,Exibir mensagem quando não existirem transações,getTransacoes retorna [],1. Abrir ExtratoScreen,"Exibe ""Nenhuma transação encontrada ainda.""",PASSED,,ALTA
+,TC004,Exibir transações ao carregar com sucesso,getTransacoes retorna lista de transações,1. Abrir ExtratoScreen2. Aguardar renderização,"Exibe dados formatados:""Venda de Produto""""Compra de Recurso""Datas formatadasValores como ""+ R$ 100,00"" e ""- 50,00 Moedas""",PASSED,,ALTA
+,TC005,Navegar para tela anterior ao clicar no botão voltar,Transações carregadas,1. Abrir ExtratoScreen2. Pressionar Back,Executa goBack(),PASSED,,ALTA
+,TC006,Exibir indicador de carregamento inicial,getCarteira e getTransacoes não retornaram,1. Abrir FluxoCaixaScreen,"Mostra ""Carregando dados da carteira...""",PASSED,,ALTA
+,TC007,Exibir erro quando API falha ao buscar carteira,getCarteira lança erro,1. Abrir FluxoCaixaScreen,"Exibe mensagem do erro (""Network Error"") e ""Tente novamente mais tarde.""",PASSED,,ALTA
+,TC008,Exibir saldo da carteira e atividades recentes,getCarteira e getTransacoes retornam dados válidos,1. Abrir FluxoCaixaScreen,"Exibe:""Fluxo de Caixa e Moedas""Saldo em Reais: R$ 1500,75Saldo em moedas: 250 MoedasAtividades: “Venda de Produto” / “Compra de Recurso”",PASSED,,ALTA
+,TC009,Navegar para ExtratoScreen ao clicar em Ver Extrato Completo,Dados carregados,1. Abrir FluxoCaixaScreen2. Pressionar botão Ver Extrato Completo,"Chamado: navigate(""EXTRATO"")",PASSED,,ALTA
+,TC010,Registrar log ao clicar em Copiar Código Pix,Dados carregados,1. Abrir FluxoCaixaScreen2. Pressionar Copiar Código Pix,"console.log(""Copiar Pix"") é chamado",PASSED,,ALTA
+,TC011,Exibir mensagem quando não houver atividade recente,getTransacoes retorna [],1. Abrir FluxoCaixaScreen,"Exibe ""Nenhuma atividade recente encontrada.""",PASSED,,ALTA
